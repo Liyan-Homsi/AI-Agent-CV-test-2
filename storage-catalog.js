@@ -211,6 +211,8 @@ export function extractYear(str) {
   return match ? parseInt(match[0], 10) : null;
 }
 
+// 15-12-2025 liyan's updates
+
 export function calculateYearsFromPeriod(period) {
   if (!period || typeof period !== "string") return 0;
   const currentYear = new Date().getFullYear();
@@ -219,12 +221,14 @@ export function calculateYearsFromPeriod(period) {
   const startYear = extractYear(parts[0].trim());
   const endYear =
     parts[1].toLowerCase().includes("present") ||
-    parts[1].toLowerCase().includes("current")
+    parts[1].toLowerCase().includes("current") ||  
+    parts[1].toLowerCase().includes("now")
       ? currentYear
       : extractYear(parts[1].trim());
   if (!startYear || !endYear) return 0;
   return Math.max(0, endYear - startYear);
 }
+// 15-12-2025 end liyan's updates
 
 export function calculateTotalExperience(experienceArray) {
   if (!Array.isArray(experienceArray)) return 0;
